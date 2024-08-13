@@ -1,9 +1,10 @@
 import {all} from 'redux-saga/effects'
-import { watcherRegistration } from './registrationsaga'
+import { watcherLogin, watcherRegistration } from './registrationsaga'
+import { watcherAccount } from './accountsaga'
 
 
 
 export function* rootSaga()
 {
-    yield all([watcherRegistration()])
+    yield all([watcherRegistration(),watcherLogin(),watcherAccount()])
 }

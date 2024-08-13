@@ -1,6 +1,6 @@
 import { call, put, takeLeading } from "redux-saga/effects";
-import { registrationService } from "../service/registrationservice";
-import { UserError, UserRequest, UserSuc } from "../slice/registration";
+import { loginservice, registrationService } from "../service/registrationservice";
+import { LoginError, LoginRequest, LoginSuc, UserError, UserRequest, UserSuc } from "../slice/registration";
 
 export function* abc(data)
 {
@@ -21,4 +21,23 @@ export function* watcherRegistration()
 {
     yield takeLeading(UserRequest().type,abc);
 
+}
+
+export function* login(data)
+{try
+    {
+    let p = yield call(loginservice,data.payload);
+
+    yield put(LoginSuc(p.data));
+    }
+    catch(error)
+    {
+        yield put(LoginError(error));
+    }
+
+}
+
+export function* watcherLogin()
+{
+    yield takeLeading(LoginRequest().type,login);
 }
