@@ -3,7 +3,7 @@ import registrationData from '../slice/registration';
 import createSagaMiddleware from "@redux-saga/core";
 import { rootSaga } from '../saga';
 import accountData from '../slice/user';
-
+import av from '../slice/tutorials';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = configureStore({
@@ -11,7 +11,8 @@ const store = configureStore({
     reducer: {
 
         registration : registrationData,
-        account: accountData
+        account: accountData,
+        tutorials: av
 
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware)
